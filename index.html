@@ -38,8 +38,26 @@
         </p>
     </div>
 
+    <script src="auth.js"></script>
     <script>
         lucide.createIcons();
+
+        // Check if already logged in
+        const session = Auth.getSession();
+        if (session) {
+            const container = document.querySelector('.glass-card div:last-of-type');
+            container.innerHTML = `
+                <a href="dashboard.html" class="btn-premium btn-primary-premium">
+                    <i data-lucide="layout-dashboard" style="width: 20px;"></i>
+                    Buka Dashboard
+                </a>
+                <button onclick="Auth.logout()" class="btn-premium btn-outline-premium" style="cursor: pointer;">
+                    <i data-lucide="log-out" style="width: 20px;"></i>
+                    Logout
+                </button>
+            `;
+            lucide.createIcons();
+        }
     </script>
 </body>
 </html>

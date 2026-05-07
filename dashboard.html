@@ -1,15 +1,3 @@
-<?php
-session_start();
-
-// Cek sudah login
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.html");
-    exit();
-}
-
-$username = htmlspecialchars($_SESSION['username']);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +6,11 @@ $username = htmlspecialchars($_SESSION['username']);
     <title>Dashboard | Portal Premium</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="auth.js"></script>
+    <script>
+        // Guard the page - redirect to login if not authenticated
+        Auth.guard();
+    </script>
     <style>
         body {
             display: block; /* Override flex center from style.css */
@@ -82,18 +75,18 @@ $username = htmlspecialchars($_SESSION['username']);
         <div style="display: flex; align-items: center; gap: 1.5rem;">
             <div style="text-align: right;">
                 <div style="font-size: 0.75rem; color: var(--text-muted);">Selamat datang,</div>
-                <div style="font-weight: 600;"><?php echo $username; ?></div>
+                <div style="font-weight: 600;" id="display-username">Loading...</div>
             </div>
-            <a href="logout.php" class="btn-premium btn-outline-premium" style="margin: 0; padding: 0.5rem 1rem; font-size: 0.875rem;">
+            <button onclick="Auth.logout()" class="btn-premium btn-outline-premium" style="margin: 0; padding: 0.5rem 1rem; font-size: 0.875rem; cursor: pointer;">
                 <i data-lucide="log-out" style="width: 16px;"></i>
                 Logout
-            </a>
+            </button>
         </div>
     </nav>
 
     <main class="main-container">
         <header style="margin-bottom: 3rem;">
-            <h1 class="text-gradient" style="font-size: 2.5rem;">Halo, <?php echo $username; ?>! 👋</h1>
+            <h1 class="text-gradient" style="font-size: 2.5rem;">Halo, <span id="welcome-name">User</span>! 👋</h1>
             <p style="color: var(--text-muted); font-size: 1.125rem;">Anda telah berhasil masuk ke sistem portal premium kami.</p>
         </header>
 
@@ -129,6 +122,13 @@ $username = htmlspecialchars($_SESSION['username']);
 
     <script>
         lucide.createIcons();
+
+        // Update UI with session data
+        const session = Auth.getSession();
+        if (session) {
+            document.getElementById('display-username').textContent = session.username;
+            document.getElementById('welcome-name').textContent = session.username;
+        }
     </script>
 </body>
 </html>

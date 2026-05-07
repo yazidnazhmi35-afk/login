@@ -18,12 +18,12 @@
             <p style="color: var(--text-muted);">Buat akun baru Anda secara gratis</p>
         </div>
 
-        <form method="POST" action="daftar.php">
+        <form id="signupForm">
             <div class="form-group">
                 <label class="form-label">Username</label>
                 <div style="position: relative;">
                     <i data-lucide="user" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); width: 18px; color: var(--text-muted);"></i>
-                    <input class="form-control" name="username" type="text" placeholder="Username Anda" style="padding-left: 3rem;" required>
+                    <input class="form-control" name="username" id="username" type="text" placeholder="Username Anda" style="padding-left: 3rem;" required>
                 </div>
             </div>
 
@@ -31,7 +31,7 @@
                 <label class="form-label">Email</label>
                 <div style="position: relative;">
                     <i data-lucide="mail" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); width: 18px; color: var(--text-muted);"></i>
-                    <input class="form-control" name="email" type="email" placeholder="email@contoh.com" style="padding-left: 3rem;" required>
+                    <input class="form-control" name="email" id="email" type="email" placeholder="email@contoh.com" style="padding-left: 3rem;" required>
                 </div>
             </div>
 
@@ -39,7 +39,7 @@
                 <label class="form-label">Password</label>
                 <div style="position: relative;">
                     <i data-lucide="lock" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); width: 18px; color: var(--text-muted);"></i>
-                    <input class="form-control" name="password" type="password" placeholder="••••••••" style="padding-left: 3rem;" required>
+                    <input class="form-control" name="password" id="password" type="password" placeholder="••••••••" style="padding-left: 3rem;" required>
                 </div>
             </div>
 
@@ -58,8 +58,26 @@
         </form>
     </div>
 
+    <script src="auth.js"></script>
     <script>
         lucide.createIcons();
+
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const result = Auth.signup(username, email, password);
+
+            if (result.success) {
+                alert(result.message);
+                window.location.href = 'login.html';
+            } else {
+                alert(result.message);
+            }
+        });
     </script>
 </body>
 </html>
