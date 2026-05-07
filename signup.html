@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar | Portal Premium</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="glass-card">
+        <div class="text-center mb-5">
+            <h2 class="text-gradient">Gabung Bersama Kami</h2>
+            <p style="color: var(--text-muted);">Buat akun baru Anda secara gratis</p>
+        </div>
+
+        <form method="POST" action="daftar.php">
+            <div class="form-group">
+                <label class="form-label">Username</label>
+                <div style="position: relative;">
+                    <i data-lucide="user" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); width: 18px; color: var(--text-muted);"></i>
+                    <input class="form-control" name="username" type="text" placeholder="Username Anda" style="padding-left: 3rem;" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <div style="position: relative;">
+                    <i data-lucide="mail" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); width: 18px; color: var(--text-muted);"></i>
+                    <input class="form-control" name="email" type="email" placeholder="email@contoh.com" style="padding-left: 3rem;" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <div style="position: relative;">
+                    <i data-lucide="lock" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); width: 18px; color: var(--text-muted);"></i>
+                    <input class="form-control" name="password" type="password" placeholder="••••••••" style="padding-left: 3rem;" required>
+                </div>
+            </div>
+
+            <button class="btn-premium btn-primary-premium" type="submit" style="margin-top: 1rem;">
+                <i data-lucide="user-plus" style="width: 20px;"></i>
+                Daftar Akun
+            </button>
+            
+            <div class="footer-text">
+                <p>Sudah punya akun? <a href="login.html">Login di sini</a></p>
+                <a href="index.html" style="display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; opacity: 0.7;">
+                    <i data-lucide="arrow-left" style="width: 16px;"></i>
+                    Kembali ke Beranda
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
